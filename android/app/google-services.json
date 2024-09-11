@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "628937016111",
+    "project_id": "findit-a9376",
+    "storage_bucket": "findit-a9376.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628937016111:android:dfeca0df1a6a0ee92d17da",
+        "android_client_info": {
+          "package_name": "com.example.f"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsR4cgyDoHHlJkd1SRYneSbJY3I1o3jhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628937016111:android:848651070f1fc0292d17da",
+        "android_client_info": {
+          "package_name": "com.example.findit_admin_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsR4cgyDoHHlJkd1SRYneSbJY3I1o3jhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628937016111:android:9f09dda4704db5fb2d17da",
+        "android_client_info": {
+          "package_name": "com.example.findit_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsR4cgyDoHHlJkd1SRYneSbJY3I1o3jhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

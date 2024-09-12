@@ -1,3 +1,4 @@
+import 'package:findit_app/containers/promo_container.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,12 +14,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Home Page",
+          "Best Deals",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w600,
           ),
         ),
+      ),
+      body: Column(
+        children: [
+          PromoContainer()
+        ],
       ),
     );
   }

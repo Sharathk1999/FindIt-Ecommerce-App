@@ -35,4 +35,13 @@ class DbService {
   Stream<DocumentSnapshot> readUserData(){
    return db.collection("shop_users").doc(user!.uid).snapshots();
   }
+
+  //Read all the promos and banners
+  Stream<QuerySnapshot> readPromos(){
+    return db.collection("shop_promos").snapshots();
+  }
+  Stream<QuerySnapshot> readBanners(){
+    return db.collection("shop_banners").snapshots();
+  }
 }
+ 

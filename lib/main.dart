@@ -2,11 +2,14 @@
 
 import 'package:findit_app/controllers/auth_service.dart';
 import 'package:findit_app/firebase_options.dart';
+import 'package:findit_app/providers/user_provider.dart';
 import 'package:findit_app/views/home_nav_bar.dart';
 import 'package:findit_app/views/login_page.dart';
 import 'package:findit_app/views/sign_up_page.dart';
+import 'package:findit_app/views/update_profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,19 +24,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider(),)
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          useMaterial3: true,
+        ),
+      routes: {
+        "/":(context)=> const CheckUserLoggedIn(),
+        "/home":(context)=> const HomeNavBar(),
+        "/login":(context)=> const LoginPage(),
+        "/signUp":(context)=> const SignUpPage(),
+        "/update_profile":(context)=> const UpdateProfile (),
+        
+      },
       ),
-    routes: {
-      "/":(context)=> const CheckUserLoggedIn(),
-      "/home":(context)=> const HomeNavBar(),
-      "/login":(context)=> const LoginPage(),
-      "/signUp":(context)=> const SignUpPage(),
-    },
     );
   }
 }

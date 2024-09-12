@@ -223,6 +223,13 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     }
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade400,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+                  ),
                   child: const Text(
                     "Login",
                     style: TextStyle(fontSize: 16),

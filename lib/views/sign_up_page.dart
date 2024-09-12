@@ -109,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                      //login logic
                     if (formKey.currentState!.validate()) {
                       AuthService()
-                          .createAccountWithEmail(
+                          .createAccountWithEmail(_nameController.text,
                               _emailController.text, _passwordController.text)
                           .then(
                         (value) {
@@ -137,6 +137,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       );
                     }
                   },
+                    style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade400,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+                  ),
                   child: const Text(
                     "Sign up",
                     style: TextStyle(fontSize: 16),

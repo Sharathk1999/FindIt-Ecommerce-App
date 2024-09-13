@@ -32,16 +32,32 @@ class DbService {
   }
 
   //Read the user data
-  Stream<DocumentSnapshot> readUserData(){
-   return db.collection("shop_users").doc(user!.uid).snapshots();
+  Stream<DocumentSnapshot> readUserData() {
+    return db.collection("shop_users").doc(user!.uid).snapshots();
   }
 
   //Read all the promos and banners
-  Stream<QuerySnapshot> readPromos(){
+  Stream<QuerySnapshot> readPromos() {
     return db.collection("shop_promos").snapshots();
   }
-  Stream<QuerySnapshot> readBanners(){
+
+  Stream<QuerySnapshot> readBanners() {
     return db.collection("shop_banners").snapshots();
   }
+
+  //Read the discount coupons
+  Stream<QuerySnapshot> readDiscounts() {
+    return db
+        .collection("shop_coupons")
+        .orderBy("discount", descending: true)
+        .snapshots();
+  }
+
+  //Read All Categories
+  Stream<QuerySnapshot> readCategories() {
+    return db
+        .collection("shop_categories")
+        .orderBy("priority",descending: true)
+        .snapshots();
+  }
 }
- 

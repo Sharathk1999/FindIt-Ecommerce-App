@@ -1,3 +1,5 @@
+import 'package:findit_app/containers/category_container.dart';
+import 'package:findit_app/containers/discount_container.dart';
 import 'package:findit_app/containers/promo_container.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( 
       appBar: AppBar(
         title: const Text(
           "Best Deals",
@@ -23,7 +25,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          PromoContainer()
+          PromoContainer(),
+          DiscountContainer(),
+          CategoryContainer(),
         ],
       ),
     );

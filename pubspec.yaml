@@ -48,6 +48,7 @@ dependencies:
   provider: ^6.1.2
   awesome_snackbar_content: ^0.1.4
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

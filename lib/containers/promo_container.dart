@@ -26,13 +26,23 @@ class _PromoContainerState extends State<PromoContainer> {
             return CarouselSlider(
               items: promos
                   .map(
-                    (promo) => Image.network(promo.image,fit: BoxFit.cover,),
+                    (promo) => GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/specific",arguments: {
+                          "name":promo.category,
+                        });
+                      },
+                      child: Image.network(
+                        promo.image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   )
                   .toList(),
               options: CarouselOptions(
                 autoPlay: true,
                 autoPlayInterval: const Duration(seconds: 5),
-                aspectRatio: 16/9,
+                aspectRatio: 16 / 9,
                 viewportFraction: 1,
                 enlargeCenterPage: true,
                 scrollDirection: Axis.horizontal,

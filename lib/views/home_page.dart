@@ -1,5 +1,6 @@
 import 'package:findit_app/containers/category_container.dart';
 import 'package:findit_app/containers/discount_container.dart';
+import 'package:findit_app/containers/home_page_main_container.dart';
 import 'package:findit_app/containers/promo_container.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold( 
       appBar: AppBar(
+        forceMaterialTransparency: true,
         title: const Text(
           "Best Deals",
           style: TextStyle(
@@ -23,12 +25,15 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          PromoContainer(),
-          DiscountContainer(),
-          CategoryContainer(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            PromoContainer(),
+            DiscountContainer(),
+            CategoryContainer(),
+            HomePageMainContainer()
+          ],
+        ),
       ),
     );
   }

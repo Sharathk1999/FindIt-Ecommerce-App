@@ -3,10 +3,13 @@
 import 'package:findit_app/controllers/auth_service.dart';
 import 'package:findit_app/firebase_options.dart';
 import 'package:findit_app/providers/user_provider.dart';
+import 'package:findit_app/views/discount_page.dart';
 import 'package:findit_app/views/home_nav_bar.dart';
 import 'package:findit_app/views/login_page.dart';
 import 'package:findit_app/views/sign_up_page.dart';
+import 'package:findit_app/views/specific_product_page.dart';
 import 'package:findit_app/views/update_profile.dart';
+import 'package:findit_app/views/view_product.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +44,9 @@ class MyApp extends StatelessWidget {
         "/login":(context)=> const LoginPage(),
         "/signUp":(context)=> const SignUpPage(),
         "/update_profile":(context)=> const UpdateProfile (),
+        "/discount":(context)=> const DiscountPage (),
+        "/specific":(context)=> const SpecificProductPage (),
+        "/view_product":(context)=> const ViewProduct (),
         
       },
       ),

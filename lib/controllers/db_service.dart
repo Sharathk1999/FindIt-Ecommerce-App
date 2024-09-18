@@ -60,4 +60,14 @@ class DbService {
         .orderBy("priority",descending: true)
         .snapshots();
   }
+
+  //Products for Specific Category
+  //Reading all the products
+   Stream<QuerySnapshot> readProducts(String category) {
+    return db
+        .collection("shop_products")
+        .where("category", isEqualTo: category.toLowerCase(),)
+        .snapshots();
+  }
+
 }

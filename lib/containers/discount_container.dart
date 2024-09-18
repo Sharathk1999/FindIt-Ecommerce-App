@@ -21,39 +21,42 @@ class _DiscountContainerState extends State<DiscountContainer> {
               CouponModel.fromJsonList(snapshot.data!.docs);
 
           if (discounts.isEmpty) {
-            return SizedBox();
+            return const SizedBox();
           } else {
-            return Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 20,
-              ),
-              margin: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 10,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.blue.shade100,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Shimmer.fromColors(
-                    baseColor: Colors.blue.shade700,
-                    highlightColor: Colors.grey.shade300,
-                   loop: 10,
-                    child: Text(
-                      "Use coupon: ${discounts[0].code}",
-                      style: TextStyle(color: Colors.blue.shade700,fontWeight: FontWeight.bold,),
+            return GestureDetector(
+              onTap: () => Navigator.pushNamed(context,"/discount"),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 20,
+                ),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade100,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Shimmer.fromColors(
+                      baseColor: Colors.blue.shade700,
+                      highlightColor: Colors.grey.shade300,
+                     loop: 10,
+                      child: Text(
+                        "Use coupon: ${discounts[0].code}",
+                        style: TextStyle(color: Colors.blue.shade700,fontWeight: FontWeight.bold,),
+                      ),
                     ),
-                  ),
-                  Text(
-                    discounts[0].description,
-                    style: TextStyle(color: Colors.blue.shade700,),
-                  ),
-                ],
+                    Text(
+                      discounts[0].description,
+                      style: TextStyle(color: Colors.blue.shade700,),
+                    ),
+                  ],
+                ),
               ),
             );
           }

@@ -24,12 +24,17 @@ class _CategoryContainerState extends State<CategoryContainer> {
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: categories.map((category) => CategoryBtn(name: category.name, imgPath: category.image),).toList(),
+                children: categories
+                    .map(
+                      (category) => CategoryBtn(
+                          name: category.name, imgPath: category.image),
+                    )
+                    .toList(),
               ),
             );
           }
         } else {
-        return  const SizedBox();
+          return const SizedBox();
         }
       },
     );
@@ -52,23 +57,40 @@ class CategoryBtn extends StatefulWidget {
 class _CategoryBtnState extends State<CategoryBtn> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin:const EdgeInsets.all(10),
-      padding:const EdgeInsets.all(10),
-      height: 100,
-      width: 100,
-      decoration: BoxDecoration(
-        color: Colors.blue.shade100,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.network(widget.imgPath,fit: BoxFit.contain,height: 50,),
-        const  SizedBox(height: 5,),
-          Text("${widget.name.substring(0,1).toUpperCase()}${widget.name.substring(1)}"),
-        ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, "/specific",arguments: {
+          "name":widget.name,
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(10),
+        height: 100,
+        width: 100,
+        decoration: BoxDecoration(
+          color: Colors.blue.shade100,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.network(
+              widget.imgPath,
+              fit: BoxFit.contain,
+              height: 50,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Hero(
+              tag: widget.name,
+              child: Text(
+                  "${widget.name.substring(0, 1).toUpperCase()}${widget.name.substring(1)}",style: const TextStyle(color: Colors.black),),
+            ),
+          ],
+        ),
       ),
     );
   }

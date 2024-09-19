@@ -1,3 +1,4 @@
+import 'package:findit_app/views/cart_page.dart';
 import 'package:findit_app/views/home_page.dart';
 import 'package:findit_app/views/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class _HomeNavBarState extends State<HomeNavBar> {
   List pages = [
     HomePage(),
     Text("Orders"),
-    Text("Cart"),
+    CartPage(),
     ProfilePage(),
   ];
   @override

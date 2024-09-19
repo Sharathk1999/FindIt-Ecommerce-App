@@ -1,6 +1,9 @@
 import 'package:findit_app/contants/discount.dart';
+import 'package:findit_app/models/cart_model.dart';
 import 'package:findit_app/models/products_model.dart';
+import 'package:findit_app/providers/cart_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ViewProduct extends StatefulWidget {
   const ViewProduct({super.key});
@@ -120,7 +123,21 @@ class _ViewProductState extends State<ViewProduct> {
             height: 50,
             width: MediaQuery.of(context).size.width * .5,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<CartProvider>(context, listen: false).addToCart(
+                  CartModel(
+                    productId: arguments.id,
+                    quantity: 1,
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      "Added to Cart",
+                    ),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   foregroundColor: Colors.white,

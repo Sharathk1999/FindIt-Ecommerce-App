@@ -2,7 +2,9 @@
 
 import 'package:findit_app/controllers/auth_service.dart';
 import 'package:findit_app/firebase_options.dart';
+import 'package:findit_app/providers/cart_provider.dart';
 import 'package:findit_app/providers/user_provider.dart';
+import 'package:findit_app/views/cart_page.dart';
 import 'package:findit_app/views/discount_page.dart';
 import 'package:findit_app/views/home_nav_bar.dart';
 import 'package:findit_app/views/login_page.dart';
@@ -29,7 +31,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => UserProvider(),)
+        ChangeNotifierProvider(create: (context) => UserProvider(),),
+        ChangeNotifierProvider(create: (context) => CartProvider(),)
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -47,6 +50,7 @@ class MyApp extends StatelessWidget {
         "/discount":(context)=> const DiscountPage (),
         "/specific":(context)=> const SpecificProductPage (),
         "/view_product":(context)=> const ViewProduct (),
+        "/cart":(context)=> const CartPage (),
         
       },
       ),

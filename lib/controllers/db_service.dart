@@ -54,6 +54,12 @@ class DbService {
         .snapshots();
   }
 
+  //verify the coupon
+  Future<QuerySnapshot> verifyDiscountCoupon({required String code}){
+    debugPrint("searching for coupon: $code");
+    return db.collection("shop_coupons").where("code", isEqualTo: code).get();
+  }
+
   //Read All Categories
   Stream<QuerySnapshot> readCategories() {
     return db

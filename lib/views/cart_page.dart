@@ -63,7 +63,7 @@ class _CartPageState extends State<CartPage> {
             return Container(
               width: double.infinity,
               height: 60,
-              padding: EdgeInsets.all(10),
+              padding:const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.blue.shade50,
               ),
@@ -78,12 +78,14 @@ class _CartPageState extends State<CartPage> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/checkout");
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.lightGreen,
                       foregroundColor: Colors.white,
                     ),
-                    child: Text(
+                    child:const Text(
                       "Proceed to Checkout",
                     ),
                   ),

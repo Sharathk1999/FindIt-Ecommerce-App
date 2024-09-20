@@ -27,12 +27,14 @@ class _CartPageState extends State<CartPage> {
         scrolledUnderElevation: 0,
         forceMaterialTransparency: true,
       ),
-      body: Consumer<CartProvider>(
-        builder: (context, value, child) {
-          if (value.isLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+      body: Consumer<CartProvider>(builder: (context, value, child) {
+        if (value.isLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          if (value.carts.isEmpty) {
+            return const Center(child: Text("No items in cart"));
           } else {
             if (value.products.isNotEmpty) {
               return ListView.builder(
@@ -53,8 +55,8 @@ class _CartPageState extends State<CartPage> {
               return const Center(child: Text("No items in cart."));
             }
           }
-        },
-      ),
+        }
+      }),
       bottomNavigationBar: Consumer<CartProvider>(
         builder: (context, value, child) {
           if (value.carts.isEmpty) {
@@ -63,7 +65,7 @@ class _CartPageState extends State<CartPage> {
             return Container(
               width: double.infinity,
               height: 60,
-              padding:const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.blue.shade50,
               ),
@@ -85,7 +87,7 @@ class _CartPageState extends State<CartPage> {
                       backgroundColor: Colors.lightGreen,
                       foregroundColor: Colors.white,
                     ),
-                    child:const Text(
+                    child: const Text(
                       "Proceed to Checkout",
                     ),
                   ),

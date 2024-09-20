@@ -28,50 +28,75 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             Consumer<UserProvider>(
-              builder: (context, user, child) =>Card(
+              builder: (context, user, child) => Card(
                 child: ListTile(
                   title: Text(user.name),
                   subtitle: Text(user.email),
-                  trailing:const Icon(Icons.edit),
+                  trailing: const Icon(Icons.edit),
                   onTap: () {
                     Navigator.pushNamed(context, "/update_profile");
                   },
                 ),
               ),
             ),
-            const SizedBox(height: 10,),
-           
-           
+            const SizedBox(
+              height: 10,
+            ),
             ListTile(
-              title:const Text("Orders"),
+              title: const Text("Orders"),
               leading: const Icon(Icons.local_shipping_rounded),
-              onTap: ()async {
-               
+              onTap: () {
+                Navigator.pushNamed(context, "/orders");
               },
             ),
-            const Divider(thickness: 1, endIndent: 10,indent: 10,),
+            const Divider(
+              thickness: 1,
+              endIndent: 10,
+              indent: 10,
+            ),
             ListTile(
-              title:const Text("Discount & Offers"),
-              leading: const Icon(Icons.discount_rounded,),
-              onTap: ()async {
-              
+              title: const Text("Discount & Offers"),
+              leading: const Icon(
+                Icons.discount_rounded,
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, "/discount");
+
               },
             ),
-            const Divider(thickness: 1, endIndent: 10,indent: 10,),
+            const Divider(
+              thickness: 1,
+              endIndent: 10,
+              indent: 10,
+            ),
             ListTile(
-              title:const Text("Help & Support"),
+              title: const Text("Help & Support"),
               leading: const Icon(Icons.support_agent_rounded),
-              onTap: ()async {
-              
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      "Contact as at helpdeskfindit@gmail.com,",
+                    ),
+                  ),
+                );
               },
             ),
-            const Divider(thickness: 1, endIndent: 10,indent: 10,),
+            const Divider(
+              thickness: 1,
+              endIndent: 10,
+              indent: 10,
+            ),
             ListTile(
-              title:const Text("Logout"),
+              title: const Text("Logout"),
               leading: const Icon(Icons.logout_rounded),
-              onTap: ()async {
+              onTap: () async {
                 await AuthService().logOut();
-                Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => true,);
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  "/login",
+                  (route) => true,
+                );
               },
             ),
           ],

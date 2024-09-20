@@ -9,6 +9,7 @@ import 'package:findit_app/views/checkout_page.dart';
 import 'package:findit_app/views/discount_page.dart';
 import 'package:findit_app/views/home_nav_bar.dart';
 import 'package:findit_app/views/login_page.dart';
+import 'package:findit_app/views/orders_page.dart';
 import 'package:findit_app/views/sign_up_page.dart';
 import 'package:findit_app/views/specific_product_page.dart';
 import 'package:findit_app/views/update_profile.dart';
@@ -61,7 +62,8 @@ class MyApp extends StatelessWidget {
         "/view_product":(context)=> const ViewProduct (),
         "/cart":(context)=> const CartPage (),
         "/checkout":(context)=> const CheckoutPage (),
-        
+        "/orders":(context)=> const OrdersPage (),       
+        "/view_orders":(context)=> const ViewOrders (),       
       },
       ),
     );

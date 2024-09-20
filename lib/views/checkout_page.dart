@@ -247,7 +247,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
               await Stripe.instance.presentPaymentSheet();
 
               final cart = Provider.of<CartProvider>(context, listen: false);
-
               User? currentUser = FirebaseAuth.instance.currentUser;
               List products = [];
 
@@ -259,15 +258,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   "single_price": cart.products[i].newPrice,
                   "total_price":
                       cart.products[i].newPrice * cart.carts[i].quantity,
-                  "quantity": cart.carts[i].quantity
+                  "quantity": cart.carts[i].quantity,
                 });
               }
 
               // ORDER STATUS
-              // PAID - paid money by user
-              // SHIPPED - item shipped
-              // CANCELLED - item cancelled
-              // DELIVERED - order delivered
+              // PAID - Paid by the user
+              // SHIPPED - Product Shipped
+              // CANCELLED - Product Cancelled
+              // DELIVERED - Order Delivered
 
               Map<String, dynamic> orderData = {
                 "user_id": currentUser!.uid,
@@ -279,12 +278,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 "total": cart.totalCost - discount,
                 "products": products,
                 "status": "PAID",
-                "created_at": DateTime.now().millisecondsSinceEpoch
+                "created_at": DateTime.now().millisecondsSinceEpoch,
               };
 
-              dataOfOrder = orderData;
+              await DbService().createOrder(data: orderData);
 
-//  close the checkout page
+              //Looping over to get all the product id and reduce the quantity
+              for (int i = 0; i < cart.products.length; i++) {
+                DbService().reduceProductQuantity(productId: cart.products[i].id, quantity: cart.carts[i].quantity);
+              }
+              //clear the user after payment
+              await DbService().emptyCart();
               Navigator.pop(context);
 
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

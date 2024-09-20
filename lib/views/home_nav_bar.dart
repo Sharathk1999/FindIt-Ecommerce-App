@@ -1,7 +1,10 @@
+import 'package:findit_app/providers/cart_provider.dart';
 import 'package:findit_app/views/cart_page.dart';
 import 'package:findit_app/views/home_page.dart';
+import 'package:findit_app/views/orders_page.dart';
 import 'package:findit_app/views/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeNavBar extends StatefulWidget {
   const HomeNavBar({super.key});
@@ -13,9 +16,9 @@ class HomeNavBar extends StatefulWidget {
 class _HomeNavBarState extends State<HomeNavBar> {
   int selectedIndex = 0;
 
-  List pages = [
+  List pages = const [
     HomePage(),
-    Text("Orders"),
+    OrdersPage(),
     CartPage(),
     ProfilePage(),
   ];
@@ -48,8 +51,18 @@ class _HomeNavBarState extends State<HomeNavBar> {
             label: "Orders",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.trolley,
+            icon: Consumer<CartProvider>(
+              builder: (context, value, child) {
+                if (value.carts.length > 0) {
+                  return Badge(
+                    label: Text(value.carts.length.toString()),
+                    child: Icon(Icons.shopping_cart_outlined),
+                  );
+                }
+                return Icon(Icons.shopping_cart_outlined);
+              },
+             
+              
             ),
             label: "Cart",
           ),

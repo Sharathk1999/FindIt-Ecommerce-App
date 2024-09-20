@@ -55,7 +55,7 @@ class DbService {
   }
 
   //verify the coupon
-  Future<QuerySnapshot> verifyDiscountCoupon({required String code}){
+  Future<QuerySnapshot> verifyDiscountCoupon({required String code}) {
     debugPrint("searching for coupon: $code");
     return db.collection("shop_coupons").where("code", isEqualTo: code).get();
   }
@@ -81,10 +81,21 @@ class DbService {
   }
 
   //search products by doc ids
-  Stream<QuerySnapshot> searchProducts(List<String> docIds){
-    return db.collection("shop_products")
-           .where(FieldPath.documentId, whereIn: docIds)
-           .snapshots();
+  Stream<QuerySnapshot> searchProducts(List<String> docIds) {
+    return db
+        .collection("shop_products")
+        .where(FieldPath.documentId, whereIn: docIds)
+        .snapshots();
+  }
+
+  //Reduce product quantity after purchase
+  Future reduceProductQuantity({
+    required String productId,
+    required int quantity,
+  }) async {
+    await db.collection("shop_products").doc(productId).update({
+      "quantity":FieldValue.increment(-quantity),
+    });
   }
 
   //Cart
@@ -163,5 +174,26 @@ class DbService {
         .collection("cart")
         .doc(productId)
         .update({"quantity": FieldValue.increment(-1)});
+  }
+
+  //orders
+  //new order
+  Future createOrder({required Map<String, dynamic> data}) async {
+    await db.collection("shop_orders").add(data);
+  }
+
+  //U pdate order status
+  Future updateOrderStatus(
+      {required String docId, required Map<String, dynamic> data}) async {
+    await db.collection("shop_orders").doc(docId).update(data);
+  }
+
+  //Read order data for specific product
+  Stream<QuerySnapshot> readOrders() {
+    return db
+        .collection("shop_orders")
+        .where("user_id", isEqualTo: user!.uid)
+        .orderBy("created_at", descending: true)
+        .snapshots();
   }
 }

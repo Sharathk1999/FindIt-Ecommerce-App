@@ -182,7 +182,7 @@ class DbService {
     await db.collection("shop_orders").add(data);
   }
 
-  //U pdate order status
+  //Update order status
   Future updateOrderStatus(
       {required String docId, required Map<String, dynamic> data}) async {
     await db.collection("shop_orders").doc(docId).update(data);

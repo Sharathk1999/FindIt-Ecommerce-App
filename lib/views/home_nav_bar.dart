@@ -1,4 +1,5 @@
 import 'package:findit_app/providers/cart_provider.dart';
+import 'package:findit_app/providers/user_provider.dart';
 import 'package:findit_app/views/cart_page.dart';
 import 'package:findit_app/views/home_page.dart';
 import 'package:findit_app/views/orders_page.dart';
@@ -14,6 +15,10 @@ class HomeNavBar extends StatefulWidget {
 }
 
 class _HomeNavBarState extends State<HomeNavBar> {
+
+  
+
+
   int selectedIndex = 0;
 
   List pages = const [
@@ -22,6 +27,12 @@ class _HomeNavBarState extends State<HomeNavBar> {
     CartPage(),
     ProfilePage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<UserProvider>(context,listen: false);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +49,13 @@ class _HomeNavBarState extends State<HomeNavBar> {
         showSelectedLabels: true,
         showUnselectedLabels: true,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
             ),
             label: "Home",
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.local_shipping_rounded,
             ),
@@ -56,17 +67,17 @@ class _HomeNavBarState extends State<HomeNavBar> {
                 if (value.carts.length > 0) {
                   return Badge(
                     label: Text(value.carts.length.toString()),
-                    child: Icon(Icons.shopping_cart_outlined),
+                    child: const Icon(Icons.shopping_cart_outlined),
                   );
                 }
-                return Icon(Icons.shopping_cart_outlined);
+                return const Icon(Icons.shopping_cart_outlined);
               },
              
               
             ),
             label: "Cart",
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.person_outlined,
             ),

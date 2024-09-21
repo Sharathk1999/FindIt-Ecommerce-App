@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:findit_app/controllers/auth_service.dart';
+import 'package:findit_app/providers/cart_provider.dart';
 import 'package:findit_app/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +64,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               onTap: () {
                 Navigator.pushNamed(context, "/discount");
-
               },
             ),
             const Divider(
@@ -91,6 +93,8 @@ class _ProfilePageState extends State<ProfilePage> {
               title: const Text("Logout"),
               leading: const Icon(Icons.logout_rounded),
               onTap: () async {
+                Provider.of<UserProvider>(context,listen: false).cancelProviders();
+                Provider.of<CartProvider>(context,listen: false).cancelProviders();
                 await AuthService().logOut();
                 Navigator.pushNamedAndRemoveUntil(
                   context,

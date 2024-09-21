@@ -117,7 +117,10 @@ class _ViewProductState extends State<ViewProduct> {
           ],
         ),
       ),
-      bottomNavigationBar: Row(
+      bottomNavigationBar:
+      arguments.maxQuantity != 0 ?
+      
+       Row(
         children: [
           SizedBox(
             height: 50,
@@ -151,7 +154,16 @@ class _ViewProductState extends State<ViewProduct> {
             height: 50,
             width: MediaQuery.of(context).size.width * .5,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                 Provider.of<CartProvider>(context, listen: false).addToCart(
+                  CartModel(
+                    productId: arguments.id,
+                    quantity: 1,
+                  ),
+                );
+             
+                Navigator.pushNamed(context, "/checkout");
+              },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.blue,
@@ -162,7 +174,7 @@ class _ViewProductState extends State<ViewProduct> {
             ),
           ),
         ],
-      ),
+      ) : const SizedBox(),
     );
   }
 }

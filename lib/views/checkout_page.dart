@@ -3,6 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:findit_app/contants/payments.dart';
 import 'package:findit_app/controllers/db_service.dart';
+import 'package:findit_app/controllers/mail_service.dart';
+import 'package:findit_app/models/order_model.dart';
 import 'package:findit_app/providers/cart_provider.dart';
 import 'package:findit_app/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -280,15 +282,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 "status": "PAID",
                 "created_at": DateTime.now().millisecondsSinceEpoch,
               };
+              dataOfOrder = orderData;
 
               await DbService().createOrder(data: orderData);
 
               //Looping over to get all the product id and reduce the quantity
               for (int i = 0; i < cart.products.length; i++) {
-                DbService().reduceProductQuantity(productId: cart.products[i].id, quantity: cart.carts[i].quantity);
+                DbService().reduceProductQuantity(
+                    productId: cart.products[i].id,
+                    quantity: cart.carts[i].quantity);
               }
               //clear the user after payment
               await DbService().emptyCart();
+              paymentSuccess = true;
               Navigator.pop(context);
 
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -308,6 +314,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 ),
                 backgroundColor: Colors.redAccent,
               ));
+            }
+            //Mail Service
+            if (paymentSuccess) {
+              MailService().sendMailFromGmail(
+                user.email,
+                OrdersModel.fromJson(
+                  dataOfOrder,
+                  "",
+                ),
+              );
             }
           },
           style: ElevatedButton.styleFrom(

@@ -45,8 +45,11 @@ Watch On Youtube <a href="">📲Youtube Video🖥️</a>
   cached_network_image: ^3.4.1
 
 
-  <a href=""> ![FindIt App Download](https://github.com/Sharathk1999/FindIt-Ecommerce-App/releases/download/1.0/app-release.apk) </a>
-  <a href=""> ![FindIt Admin App Download](https://github.com/Sharathk1999/FindIt-Admin-App/releases/download/1.0/app-release.apk) </a>
+  <a href="https://github.com/Sharathk1999/FindIt-Ecommerce-App/releases/download/1.0/app-release.apk"> ![FindItApp Download](https://github.com/Sharathk1999/FindIt-Ecommerce-App/blob/main/Images/Download%201.jpg) </a>
+  <a href="https://github.com/Sharathk1999/FindIt-Admin-App/releases/download/1.0/app-release.apk"> ![FindIt Admin App Download](https://github.com/Sharathk1999/FindIt-Ecommerce-App/blob/main/Images/Download%202.jpg) </a>
+
+  
+
 
 
 ## Screenshots

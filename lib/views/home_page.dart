@@ -18,14 +18,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         forceMaterialTransparency: true,
         title: const Text(
-          "Best Deals",
+          "FindIt Top Deals",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w600,
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body:const SingleChildScrollView(
         child: Column(
           children: [
             PromoContainer(),
